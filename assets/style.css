@@ -1,59 +1,75 @@
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f0f0f0;
+    font-family: 'Arial', sans-serif;
+    background-color: #222;
+    color: #fff;
+    text-align: center;
     margin: 0;
     padding: 0;
-}
-
-.container {
-    text-align: center;
-    margin: 20px;
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-}
-
-h1, h2 {
-    margin: 10px 0;
-    color: #333;
-}
-
-button {
-    padding: 10px 20px;
-    font-size: 16px;
-    background-color: #007bff;
+  }
+  
+  h1 {
+    font-size: 2.5rem;
+    margin: 20px 0;
+    color: #3498db;
+  }
+  
+  button {
+    background-color: #3498db;
     color: #fff;
+    padding: 10px 20px;
+    font-size: 1rem;
     border: none;
-    border-radius: 5px;
     cursor: pointer;
-}
-
-button:hover {
-    background-color: #0056b3;
-}
-
-#quiz-container {
+  }
+  
+  button:hover {
+    background-color: #2980b9;
+  }
+  
+  .quiz {
     display: none;
-    margin-top: 20px;
-}
-
-#options {
-    margin-top: 10px;
-}
-
-#message {
-    margin-top: 10px;
-    color: #d9534f; /* Red color for incorrect answers */
-}
-
-#next-btn {
+    padding: 20px;
+  }
+  
+  h2 {
+    font-size: 1.5rem;
+  }
+  
+  .answersListEl {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  button.saveBtn {
+    background-color: #27ae60;
+    font-size: 1rem;
+    padding: 10px 20px;
+    cursor: pointer;
+    border: none;
+  }
+  
+  button.saveBtn:hover {
+    background-color: #218c50;
+  }
+  
+  .scores {
     display: none;
-    margin-top: 20px;
-}
-
-#score-container {
-    margin-top: 20px;
-    font-weight: bold;
-    color: #28a745; /* Green color for correct answers */
-}
+    padding: 20px;
+  }
+  
+  .scores h2 {
+    font-size: 1.5rem;
+    color: #f39c12;
+  }
+  
+  .scoresList {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .scoresList li {
+    font-size: 1rem;
+    margin: 10px 0;
+  }
+  
