@@ -1,17 +1,14 @@
-
 var startButton = document.querySelector("#start");
 var intro = document.querySelector(".intro");
 var quiz = document.querySelector(".quiz");
 var questionEl = document.querySelector(".questionEl");
 var answersListEl = document.querySelector(".answersListEl");
-var timeLeft = document.querySelector("#timeLeft");
+var timeLeft = document.querySelector(".quiz h2 span");
 var end = document.querySelector(".end");
 var scoreOutput = document.querySelector(".scoreOutput");
 var initialsInput = document.querySelector(".initialsInput");
 var saveBtn = document.querySelector(".saveBtn");
-var scores = document.querySelector(".scores");
 var scoresList = document.querySelector(".scoresList");
-
 
 var quizData = [
   {
@@ -89,20 +86,32 @@ var quizData = [
 
 var quizIndex = 0;
 var score = 0;
-var time = 60;
+var time = 60; // Initial time in seconds
+
+var timer; // Declare the timer variable
 
 startButton.addEventListener("click", startQuiz);
+
+// Add an event listener to the "View High Scores" link
+document
+  .querySelector("#highscores-link")
+  .addEventListener("click", function (event) {
+    event.preventDefault(); // Prevent the default link behavior
+    window.location.href = "highscores.html"; // Navigate to the highscores page
+  });
 
 function startQuiz() {
   intro.style.display = "none";
   quiz.style.display = "block";
 
-  var timer = setInterval(function () {
+  timeLeft.textContent = time; // Initialize the timer display
+
+  var quizTimer = setInterval(function () {
     if (time > 0) {
       timeLeft.textContent = time;
       time--;
     } else {
-      clearInterval(timer);
+      clearInterval(quizTimer);
       timeLeft.textContent = "";
       endGame();
     }
@@ -110,6 +119,9 @@ function startQuiz() {
 
   displayQuestion();
 }
+
+// Rest of your code...
+
 
 function displayQuestion() {
   var currentQuestion = quizData[quizIndex];
@@ -153,6 +165,7 @@ function displayScores() {
 window.addEventListener("load", displayScores);
 
 function endGame() {
+  clearInterval(timer); // Stop the timer
 
   var finalScore = score + time;
 
@@ -174,7 +187,8 @@ function endGame() {
     };
 
     // Retrieve existing data from local storage or create an empty array
-    var localStorageHistory = JSON.parse(localStorage.getItem("userData")) || [];
+    var localStorageHistory =
+      JSON.parse(localStorage.getItem("userData")) || [];
 
     // Add the new user data to the array
     localStorageHistory.push(userData);
@@ -184,7 +198,19 @@ function endGame() {
 
     // Display scores after saving
     displayScores();
+
+    // Add the "View High Scores" button
+    var viewHighScoresButton = document.createElement("button");
+    viewHighScoresButton.textContent = "View High Scores";
+    viewHighScoresButton.classList.add("viewHighScoresBtn");
+    end.appendChild(viewHighScoresButton);
+
+    viewHighScoresButton.addEventListener("click", function () {
+      displayHighScores();
+    });
   });
 }
 
-
+function displayHighScores() {
+  window.location.href = "highscores.html";
+}
